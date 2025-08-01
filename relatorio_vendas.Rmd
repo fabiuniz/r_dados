@@ -1,0 +1,66 @@
+#export PATH=$PATH:"/c/Program Files/R/R-4.5.1/bin/x64":"/caminho/do/tesseract":"/c/Program Files/RStudio/bin":"/c/Users/Fabiano/AppData/Local/Pandoc"
+#https://posit.co/download/rstudio-desktop/
+#https://gemini.google.com/app/a45be2d433d8aee0 --> pandoc
+#install.packages("rmarkdown", repos = "https://vps.fmvz.usp.br/CRAN/")
+#R >
+#rmarkdown::render("relatorio_vendas.Rmd")
+---
+title: "Relatório de Análise de Vendas"
+author: "Fabiano"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Introdução
+
+Este relatório apresenta uma análise exploratória dos dados de vendas de produtos, destacando os itens mais vendidos e as categorias que mais geraram receita.
+
+O conjunto de dados foi gerado de forma aleatória para fins de demonstração.
+
+---
+
+### 1. Preparação dos Dados
+
+Primeiro, carregamos o pacote `tidyverse` e criamos nosso dataframe de vendas.
+
+```{r carregar-e-criar-dados}
+library(tidyverse)
+
+dados_vendas <- tibble(
+  id_venda = 1:100,
+  data_venda = as.Date("2023-01-01") + sample(1:365, 100, replace = TRUE),
+  produto = sample(c("Camiseta", "Calça Jeans", "Tênis", "Meia", "Boné"), 100, replace = TRUE),
+  categoria = case_when(
+    produto %in% c("Camiseta", "Calça Jeans", "Meia") ~ "Vestuário",
+    produto == "Tênis" ~ "Calçado",
+    TRUE ~ "Acessório"
+  ),
+  quantidade = sample(1:5, 100, replace = TRUE),
+  preco_unitario = sample(c(30, 80, 200, 15, 45), 100, replace = TRUE),
+  regiao = sample(c("Norte", "Sul", "Leste", "Oeste"), 100, replace = TRUE)
+) %>%
+  mutate(valor_total = quantidade * preco_unitario)
+
+head(dados_vendas)
+
+top_produtos_quantidade <- dados_vendas %>%
+  group_by(produto) %>%
+  summarise(total_quantidade = sum(quantidade)) %>%
+  arrange(desc(total_quantidade))
+
+print(top_produtos_quantidade)
+
+top_categorias_receita <- dados_vendas %>%
+  group_by(categoria) %>%
+  summarise(total_receita = sum(valor_total)) %>%
+  arrange(desc(total_receita))
+
+print(top_categorias_receita)
+
+ggplot(top_produtos_quantidade, aes(x = reorder(produto, total_quantidade), y = total_quantidade)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "Produtos mais vendidos (por quantidade)",
+       x = "Produto",
+       y = "Quantidade Total Vendida") +
+  theme_minimal() +
+  coord_flip()
