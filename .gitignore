@@ -1,0 +1,18 @@
+# Ignore arquivos de sessão e históricos do R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Ignore arquivos gerados pelo script
+# Adicione aqui os formatos de arquivos de saída do seu projeto
+# No nosso exemplo, geramos .png, mas pode ser .pdf, .csv, etc.
+*.png
+*.jpg
+*.pdf
+output/
+
+# Ignore o diretório de pacotes locais do renv (se você usar)
+/renv/library/
+
+# Ignore arquivos temporários e de backup
+*~
