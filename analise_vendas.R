@@ -1,3 +1,4 @@
+# export PATH=$PATH:"/c/Program Files/R/R-4.5.1/bin/x64":"/caminho/do/tesseract":"/c/Program Files/RStudio/bin":"/c/Users/Fabiano/AppData/Local/Pandoc"
 # Instalar o pacote (faça isso apenas uma vez)
 # install.packages("tidyverse")
 # install.packages("tidyverse", repos = "https://cran-r.c3sl.ufpr.br/")

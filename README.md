@@ -6,8 +6,6 @@
 -->
 
 
-![Screenshot](images/r.png)
-
 ### Visão Geral do Projeto
 
 Este projeto consiste em uma análise de dados de vendas utilizando a linguagem R. A análise inicial está contida no script `analise_vendas.R`. O objetivo principal é gerar um relatório de vendas dinâmico e visualmente atraente, que pode ser exportado para diferentes formatos, como HTML.
@@ -19,7 +17,7 @@ Este projeto consiste em uma análise de dados de vendas utilizando a linguagem 
 
 ---
 
-### 1. Dashboard Interativo com Shiny
+### 1. Dashboard Interativo com Shiny 📊
 
 Com o Shiny, o projeto deixa de ser um script estático e se transforma em um **aplicativo web interativo**.
 
@@ -52,7 +50,7 @@ Isso fará com que o aplicativo seja executado e aberto em seu navegador, pronto
 
 ---
 
-### 2. Relatório Dinâmico com R Markdown
+### 2. Relatório Dinâmico com R Markdown 📝
 
 Com o R Markdown, o projeto se torna um relatório completo e formatado, que combina o código, o texto e os resultados em um único documento (como um PDF ou HTML).
 
@@ -85,7 +83,7 @@ Isso criará um arquivo chamado **`relatorio_vendas.html`** na mesma pasta. Ao a
 
 ---
 
-### 3. Serviço de Análise com Plumber
+### 3. Serviço de Análise com Plumber 🛠️
 
 Com o Plumber, o projeto seria transformado em um **serviço (API)** que outras aplicações poderiam usar.
 
@@ -115,10 +113,11 @@ Para expor suas funções como uma API, siga estes passos no console do R:
     plumber::pr_run(pr, port = 8000)
     ```
 
-O serviço estará disponível na porta 8000. Você poderá testá-lo fazendo uma requisição HTTP, como, por exemplo, `GET http://localhost:8000/top-produtos`.
-## Tabela de Testes da API (Plumber)
+O serviço estará disponível na porta 8000. Você poderá testá-lo fazendo uma requisição HTTP, como, por exemplo, `GET http://localhost:8000/top-produtos`. ✅
 
-### Endpoint: `/top-produtos`
+## Tabela de Testes da API (Plumber) 🧪
+
+### Endpoint: `/top-produtos`  🛒
 
 | Teste | Descrição | Método | URL | Resultado Esperado |
 | :--- | :--- | :--- | :--- | :--- |
@@ -130,7 +129,7 @@ O serviço estará disponível na porta 8000. Você poderá testá-lo fazendo um
 
 ---
 
-### Endpoint: `/receita-por-categoria`
+### Endpoint: `/receita-por-categoria` 💰
 
 | Teste | Descrição | Método | URL | Resultado Esperado |
 | :--- | :--- | :--- | :--- | :--- |
@@ -142,14 +141,81 @@ O serviço estará disponível na porta 8000. Você poderá testá-lo fazendo um
 
 ---
 
-### Tabela Comparativa
+### Tabela Comparativa 📈
 
-| | **Projeto Atual (Script)** | **Com Shiny** | **Com R Markdown** | **Com Plumber** |
+|-> | **Projeto Atual (Script)** | **Com Shiny** | **Com R Markdown** | **Com Plumber** |
 | :--- | :--- | :--- | :--- | :--- |
 | **Saída** | Texto no terminal e imagens .png | Web app interativo | Relatório .html ou .pdf | JSON, XML, etc. |
 | **Foco** | Análise e resultados brutos | Interação com o usuário | Apresentação e narrativa | Integração com outros sistemas |
-| **Como usar** | `Rscript` | Abrir um navegador | Ler o documento | Fazer uma requisição HTTP |
+| **Como usar** | `Rscript` | Abrir um navegador | Abrir o arquivo .html/.pdf | Fazer uma requisição HTTP |
 
+A alteração na linha **"Como usar"** deixa a tabela mais consistente. Em vez de focar no comando de execução (`Rscript`), ela descreve a interação do usuário com o produto final em cada abordagem.
+
+-   **Projeto Atual (Script):** O desenvolvedor executa o script e o resultado (texto, imagens) aparece no console ou na pasta.
+-   **Com Shiny:** O usuário final abre o navegador e acessa a URL do aplicativo para interagir.
+-   **Com R Markdown:** O usuário final simplesmente abre o documento gerado (`.html` ou `.pdf`) para ler o relatório.
+-   **Com Plumber:** Outro sistema ou desenvolvedor faz uma requisição HTTP para a API para obter os dados.
+
+---
+
+## Preparando ambiente windows para rodar o projeto 🔧
+
+-   **Configurar seu ambiente de desenvolvimento para R, RStudio e Pandoc é um passo fundamental para usar todas as funcionalidades, especialmente a criação de relatórios dinâmicos.**
+
+### Passo 1: Instalar R e RStudio 🖥️
+
+Primeiro, você precisa instalar o **R**, que é a linguagem de programação, e depois o **RStudio**, que é a interface gráfica (IDE) para trabalhar com R.
+
+1.  **Instalar R**: Acesse o site oficial do CRAN: `https://cran.r-project.org/`. Baixe a versão para seu sistema operacional (Windows, macOS, Linux) e siga as instruções do instalador. No Windows, opte pela instalação "base".
+2.  **Instalar RStudio**: Acesse o site do RStudio: `https://posit.co/download/rstudio-desktop/`. Baixe a versão gratuita (RStudio Desktop Open Source License) e instale o software. O RStudio detecta a instalação do R automaticamente.
+
+---
+
+### Passo 2: Instalar Pandoc 📚
+
+O **Pandoc** é uma ferramenta crucial para o R Markdown, pois é ela que converte seus arquivos `.Rmd` em documentos HTML, PDF, Word, etc.
+
+1.  **Baixar o instalador**: Vá para a página de download do Pandoc: `https://pandoc.org/installing.html`.
+2.  **Instalar**: Baixe o instalador mais recente para Windows (`.msi`) e execute o arquivo. Na maioria dos casos, a instalação padrão é suficiente. O Pandoc é instalado em um diretório como `C:\Users\SEU_USUARIO\AppData\Local\Pandoc`.
+
+---
+
+### Passo 3: Adicionar ao PATH no Bash (usando Git Bash) 🚀
+
+Para que você possa usar os comandos do R, RStudio e Pandoc diretamente do terminal (como o Git Bash), você precisa adicionar os diretórios executáveis deles à sua variável de ambiente `PATH`.
+
+1.  **Encontre os caminhos**: Verifique a pasta de instalação de cada programa para obter o caminho exato. Os caminhos padrão geralmente são:
+    - **R**: `C:\Program Files\R\R-4.5.1\bin\x64` (o número da versão pode variar)
+    - **RStudio**: `C:\Program Files\RStudio\bin`
+    - **Pandoc**: `C:\Users\Seu_Usuario\AppData\Local\Pandoc`
+
+2.  **Edite o arquivo `.bashrc`**: No seu terminal Bash (Git Bash, por exemplo), abra o arquivo de configuração do seu perfil. Você pode fazer isso com um editor de texto, como o Nano, ou com o Bloco de Notas:
+
+    ```bash
+    # Abrir com nano
+    nano ~/.bashrc
+
+    # Ou, para abrir no Windows Notepad
+    notepad ~/.bashrc
+    ```
+
+3.  **Adicione a linha `export PATH`**: No final do arquivo `.bashrc`, adicione a seguinte linha (substituindo o nome de usuário e a versão do R pelos seus dados):
+
+    ```bash
+    export PATH="$PATH:/c/Program Files/R/R-4.5.1/bin/x64:/c/Program Files/RStudio/bin:/c/Users/Seu_Usuario/AppData/Local/Pandoc"
+    ```
+
+    - **Observação**: Use `"` para garantir que o Bash interprete corretamente os espaços nos nomes das pastas (`Program Files`, por exemplo).
+
+4.  **Salve e feche o arquivo**. Se estiver usando o Nano, pressione `Ctrl + O` (para salvar) e `Ctrl + X` (para sair).  ✅
+
+5.  **Atualize a sessão do Bash**: Para que as mudanças tenham efeito na sua sessão atual, execute o comando:
+
+    ```bash
+    source ~/.bashrc
+    ```
+
+Agora, você deve ser capaz de usar comandos como `R`, `Rscript`, `rstudio` e `pandoc` diretamente do seu terminal. Para verificar, abra uma nova janela do terminal e digite `pandoc --version` ou `R --version`. 🎉
 
 ## 👨‍💻 Autor
 
