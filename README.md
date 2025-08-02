@@ -77,6 +77,8 @@ Para gerar o documento final, siga estes passos no console do R:
 
     ```R
     rmarkdown::render("relatorio_vendas.Rmd")
+    > q()
+    Salvar imagem da área de trabalho? [y/n/c]: n
     ```
 
 Isso criará um arquivo chamado **`relatorio_vendas.html`** na mesma pasta. Ao abrir esse arquivo no seu navegador, você verá o relatório completo, com o texto formatado, as tabelas e os gráficos.
@@ -116,6 +118,9 @@ Para expor suas funções como uma API, siga estes passos no console do R:
 O serviço estará disponível na porta 8000. Você poderá testá-lo fazendo uma requisição HTTP, como, por exemplo, `GET http://localhost:8000/top-produtos`. ✅
 
 ## Tabela de Testes da API (Plumber) 🧪
+
+### Swagger Docs: http://127.0.0.1:8000/__docs__/ ⚙️
+
 
 ### Endpoint: `/top-produtos`  🛒
 
